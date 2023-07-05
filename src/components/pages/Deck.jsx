@@ -143,7 +143,7 @@ export default function Deck() {
         <img
           className="flashcard-container-image"
           src={`https://res.cloudinary.com/dlzj22j8a/image/upload/w_100,h_100,c_fill/v1683568204/${card.image}.jpg`}
-          alt={`Image for ${card.front}`}
+          alt={`${card.front}`}
         />
       )}
       <p className="flashcard-container-back flashcard-container-show-back-back">{card.back}</p>
@@ -156,38 +156,38 @@ export default function Deck() {
 
   return (
     <div className="page-div">
-
-      <div className="form-div">
         <h1>{deckTitle}</h1>
 
-        <form className="flashcard-form" onSubmit={handleSubmit} encType="mulipart/form">
-          <div>
-            <label>Front:</label>
-            <input type="text" value={front} onChange={(e) => setFront(e.target.value)} required />
-          </div>
-          <br />
-
-          <div>
-            <label>Back:</label>
-            <input type="text" value={back} onChange={(e) => setBack(e.target.value)} required />
-          </div>
-          <br />
-
-          <div>
-            <label id="file-input" htmlFor="image-upload" className="form-label">Image:</label>
-            <div className="image-preview">
-              {image && <img src={image} alt="Preview" />}
-            </div>
-            <input className="form-control" id="image-upload" type="file" onChange={handleImageUpload} />
-          </div>
-          <button className="flashcard-form-button" type="submit">Add Flashcard</button>
-        </form>
-      </div>
+     
 
 
       <div className="flashcard-list">
+      <div className="flashcard-container">
+        <p>New Flashcard</p>
+        <form className="flashcard-form" onSubmit={handleSubmit} encType="mulipart/form">
+          <div>
+            <label htmlFor="flashcard-front" className="form-label">Front:</label>
+            <input type="text" id="flashcard-front" value={front} onChange={(e) => setFront(e.target.value)} required />
+          </div>
+
+          <div>
+            <label id="file-input" htmlFor="image-upload" className="form-label">Image:</label>
+            {/* <div className="image-preview">
+              {image && <img src={image} alt="Preview" />}
+            </div> */}
+            <input className="form-control" id="image-upload" type="file" onChange={handleImageUpload} />
+          </div>
+
+          <div>
+            <label htmlFor="flashcard-back">Back:</label>
+            <input type="text" id="flashcard-back" value={back} onChange={(e) => setBack(e.target.value)} required />
+          </div>
+
+          <button className="flashcard-form-button" type="submit">Add Flashcard</button>
+        </form>
+
+      </div>
         {flashCard}
-        <img id="uploadedimage" src=""></img>
       </div>
 
     </div>
