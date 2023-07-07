@@ -21,7 +21,7 @@ export default function Navbar({ currentUser, handleLogout }) {
 
 		</>
 	)
-	
+
 	const loggedOut = (
 		<>
 			{/* if the user is not logged in... */}
@@ -39,8 +39,17 @@ export default function Navbar({ currentUser, handleLogout }) {
 			{/* <Link to="/">
 			<button>UserApp</button>
 			</Link> */}
+			<div>
+				<span>
+					CARD.IO
+					{/* <img
+						src='https://res.cloudinary.com/dlzj22j8a/image/upload/c_lfill,w_50/v1688579179/brain_training_em0esm.png'
+						alt='card.io logo'
+					/> */}
+				</span>
+			</div>
 
-			{currentUser ? loggedIn : loggedOut}
+			<div>{currentUser ? loggedIn : loggedOut}</div>
 		</nav>
 	)
 }

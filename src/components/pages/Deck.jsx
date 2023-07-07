@@ -166,7 +166,7 @@ export default function Deck() {
 
       <div className="flashcard-list">
         <div className="flashcard-container">
-          <p><strong>New Flashcard</strong></p>
+          <p><strong>New "{deckTitle}" Flashcard</strong></p>
           <form className="flashcard-form" onSubmit={handleSubmit} encType="mulipart/form">
             <div>
               <label htmlFor="flashcard-front" className="form-label">Front:</label>
