@@ -138,55 +138,58 @@ export default function Deck() {
 
   const flashCard = cards.map((card) => (
     <div className="flashcard-container" key={card._id}>
-      <p className="flashcard-container-p flashcard-container-front">{card.front}</p>
-      {card.image && (
-        <img
-          className="flashcard-container-image"
-          src={`https://res.cloudinary.com/dlzj22j8a/image/upload/w_100,h_100,c_fill/v1683568204/${card.image}.jpg`}
-          alt={`${card.front}`}
-        />
-      )}
-      <p className="flashcard-container-back flashcard-container-show-back-back">{card.back}</p>
+      <div>
+        <p className="flashcard-container-p flashcard-container-front">{card.front}</p>
+        {card.image && (
+          <img
+            className="flashcard-container-image"
+            src={`https://res.cloudinary.com/dlzj22j8a/image/upload/w_100,h_100,c_fill/v1683568204/${card.image}.jpg`}
+            alt={`${card.front}`}
+          />
+        )}
+        <p className="flashcard-container-back flashcard-container-show-back-back">{card.back}</p>
+      </div>
 
-      <button className="edit-button" onClick={() => handleEditClick(card)}>Edit</button>
-      <button className="delete-button" onClick={() => deleteFlashcard(card._id)}>Delete</button>
+
+      <div className="flashcard-container-btns">
+        <button className="edit-button" onClick={() => handleEditClick(card)}>Edit</button>
+        <button className="delete-button" onClick={() => deleteFlashcard(card._id)}>Delete</button>
+      </div>
+
     </div>
   ));
 
 
   return (
     <div className="page-div">
-        <h1>{deckTitle}</h1>
-
-     
-
+      <h1>{deckTitle}</h1>
 
       <div className="flashcard-list">
-      <div className="flashcard-container">
-        <p>New Flashcard</p>
-        <form className="flashcard-form" onSubmit={handleSubmit} encType="mulipart/form">
-          <div>
-            <label htmlFor="flashcard-front" className="form-label">Front:</label>
-            <input type="text" id="flashcard-front" value={front} onChange={(e) => setFront(e.target.value)} required />
-          </div>
+        <div className="flashcard-container">
+          <p><strong>New Flashcard</strong></p>
+          <form className="flashcard-form" onSubmit={handleSubmit} encType="mulipart/form">
+            <div>
+              <label htmlFor="flashcard-front" className="form-label">Front:</label>
+              <input type="text" id="flashcard-front" value={front} onChange={(e) => setFront(e.target.value)} required />
+            </div>
 
-          <div>
-            <label id="file-input" htmlFor="image-upload" className="form-label">Image:</label>
-            {/* <div className="image-preview">
+            <div>
+              <label id="file-input" htmlFor="image-upload" className="form-label">Image:</label>
+              {/* <div className="image-preview">
               {image && <img src={image} alt="Preview" />}
             </div> */}
-            <input className="form-control" id="image-upload" type="file" onChange={handleImageUpload} />
-          </div>
+              <input className="form-control" id="image-upload" type="file" onChange={handleImageUpload} />
+            </div>
 
-          <div>
-            <label htmlFor="flashcard-back">Back:</label>
-            <input type="text" id="flashcard-back" value={back} onChange={(e) => setBack(e.target.value)} required />
-          </div>
+            <div>
+              <label htmlFor="flashcard-back">Back:</label>
+              <input type="text" id="flashcard-back" value={back} onChange={(e) => setBack(e.target.value)} required />
+            </div>
 
-          <button className="flashcard-form-button" type="submit">Add Flashcard</button>
-        </form>
+            <button className="flashcard-form-button" type="submit">Add Flashcard</button>
+          </form>
 
-      </div>
+        </div>
         {flashCard}
       </div>
 

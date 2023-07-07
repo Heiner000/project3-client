@@ -41,10 +41,18 @@ label {
   transition: 0.3s;
   text-align: center;
   position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .flashcard-container.flashcard-correct {
   animation: flashGreen 0.5s linear;
+}
+
+.flashcard-container-btns {
+  display: flex;
+  justify-content: space-around;
 }
 
 @keyframes flashGreen {
@@ -163,8 +171,9 @@ main {
 }
 
 .delete-button {
-  background-color: lightpink;
-  border-radius: 50%;
+  background-color: lightcoral;
+  border-radius: 8px;
+  border: 2px solid red;
   bottom: 0;
   right: 0;
   margin: 10px;
@@ -173,8 +182,9 @@ main {
 }
 
 .edit-button {
-  background-color: rgb(240, 240, 122);
-  border-radius: 50%;
+  background-color: yellow;
+  border-radius: 8px;
+  border: 2px solid orange;
   bottom: 0;
   right: 0;
   margin: 10px;
