@@ -105,7 +105,7 @@ export default function StudyMode({ currentUser, updateScore }) {
 
         <div className={`flashcard-container ${flashcardCorrect ? "flashcard-correct" : ""}`} onClick={toggleBack}>
           <h2>Current Card {currentCardIndex + 1}</h2>
-          <p className="flashcard-container-p flashcard-container-front">Question: {currentCard.front}</p>
+          <p className="flashcard-container-p flashcard-container-front">{currentCard.front}</p>
           {currentCard.image && (
         <img
           className="flashcard-container-image"
@@ -113,12 +113,12 @@ export default function StudyMode({ currentUser, updateScore }) {
           alt={`Image for ${currentCard.front}`}
         />
       )}
-          <p className={`flashcard-container-back-next ${showBack ? 'flashcard-container-show-back-back' : ''}`}>Answer: {currentCard.back}</p>
+          <p className={`flashcard-container-back-next ${showBack ? 'flashcard-container-show-back-back' : ''}`}>{currentCard.back}</p>
         </div>
         <div>
           <button onClick={handleMarkCorrect}>Correct</button>
           <button onClick={handleMarkIncorrect}>Incorrect</button>
-          <button onClick={handleNextCard}>Next</button>
+          <button onClick={handleNextCard}>Skip</button>
         </div>
         <p>Number of Correct Flashcards: {numCorrect}</p>
       </div>
