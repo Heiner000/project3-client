@@ -41,7 +41,10 @@ export default function Navbar({ currentUser, handleLogout }) {
 			</Link> */}
 			<div>
 				<span>
-					CARD.IO
+					<Link to="/">
+						CARD.IO
+					</Link>
+					 
 					{/* <img
 						src='https://res.cloudinary.com/dlzj22j8a/image/upload/c_lfill,w_50/v1688579179/brain_training_em0esm.png'
 						alt='card.io logo'
