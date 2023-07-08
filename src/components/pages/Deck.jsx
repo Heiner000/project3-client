@@ -95,10 +95,9 @@ export default function Deck() {
         if (image) {
           formdata.append("image", image)
         }
-
         const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/flashcards/${cardId}`, formdata, {
           headers: {
-            Authorization: token,
+            'Authorization': token,
             'Content-Type': 'multipart/form-data',
           },
         }
@@ -124,6 +123,7 @@ export default function Deck() {
       setBack('');
       setImage('');
       fetchCards();
+      console.log(cards)
       setEditing(false);
       setCardId('')
 
