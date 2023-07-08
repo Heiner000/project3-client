@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import axios from 'axios';
 
@@ -16,6 +16,7 @@ export default function Deck() {
 
   const { id } = useParams()
   const navigate = useNavigate();
+  const fileInput = useRef()
 
   const fetchCards = async () => {
     try {
@@ -94,10 +95,9 @@ export default function Deck() {
         if (image) {
           formdata.append("image", image)
         }
-
         const response = await axios.put(`${process.env.REACT_APP_SERVER_URL}/api-v1/flashcards/${cardId}`, formdata, {
           headers: {
-            Authorization: token,
+            'Authorization': token,
             'Content-Type': 'multipart/form-data',
           },
         }
@@ -123,8 +123,11 @@ export default function Deck() {
       setBack('');
       setImage('');
       fetchCards();
+      console.log(cards)
       setEditing(false);
       setCardId('')
+
+      fileInput.current.value = ""
     } catch (err) {
       console.log(`Error adding flashcard: ${err.message}`);
     }
@@ -178,7 +181,13 @@ export default function Deck() {
               {/* <div className="image-preview">
               {image && <img src={image} alt="Preview" />}
             </div> */}
-              <input className="form-control" id="image-upload" type="file" onChange={handleImageUpload} />
+              <input
+                ref={fileInput}
+                className="form-control"
+                id="image-upload"
+                type="file"
+                onChange={handleImageUpload}
+              />
             </div>
 
             <div>
@@ -186,7 +195,9 @@ export default function Deck() {
               <input type="text" id="flashcard-back" value={back} onChange={(e) => setBack(e.target.value)} required />
             </div>
 
-            <button className="flashcard-form-button" type="submit">Add Flashcard</button>
+            <button className="flashcard-form-button" type="submit">
+              { editing ? "Update Flashcard" : "Add Flashcard" }
+            </button>
           </form>
 
         </div>
