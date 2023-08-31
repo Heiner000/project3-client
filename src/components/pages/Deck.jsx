@@ -15,8 +15,9 @@ export default function Deck() {
   const [deckTitle, setDeckTitle] = useState('')
 
   const { id } = useParams()
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const fileInput = useRef()
+  const frontInputRef = useRef(null)
 
   const fetchCards = async () => {
     try {
@@ -43,6 +44,12 @@ export default function Deck() {
   useEffect(() => {
     fetchCards();
   }, []);
+
+  useEffect(() => {
+    if (frontInputRef.current) {
+      frontInputRef.current.focus()
+    }
+  }, [cards])
 
   const deleteFlashcard = async (id) => {
     const token = localStorage.getItem('jwt');
@@ -169,34 +176,37 @@ export default function Deck() {
 
       <div className="flashcard-list">
         <div className="flashcard-container">
-          <p><strong>New "{deckTitle}" Flashcard</strong></p>
+          <h2>{editing ? "Edit Flashcard" : "New Flashcard"}</h2>
           <form className="flashcard-form" onSubmit={handleSubmit} encType="mulipart/form">
-            <div>
-              <label htmlFor="flashcard-front" className="form-label">Front:</label>
-              <input type="text" id="flashcard-front" value={front} onChange={(e) => setFront(e.target.value)} required />
-            </div>
 
-            <div>
-              <label id="file-input" htmlFor="image-upload" className="form-label">Image:</label>
-              {/* <div className="image-preview">
+            <div className="flashcard-form-inputs">
+              <div>
+                <label htmlFor="flashcard-front" className="form-label">Front:</label>
+                <input type="text" id="flashcard-front" value={front} onChange={(e) => setFront(e.target.value)} ref={frontInputRef} required />
+              </div>
+
+              <div>
+                <label id="file-input" htmlFor="image-upload" className="form-label">Image:</label>
+                {/* <div className="image-preview">
               {image && <img src={image} alt="Preview" />}
             </div> */}
-              <input
-                ref={fileInput}
-                className="form-control"
-                id="image-upload"
-                type="file"
-                onChange={handleImageUpload}
-              />
-            </div>
+                <input
+                  ref={fileInput}
+                  className="form-control"
+                  id="image-upload"
+                  type="file"
+                  onChange={handleImageUpload}
+                />
+              </div>
 
-            <div>
-              <label htmlFor="flashcard-back">Back:</label>
-              <input type="text" id="flashcard-back" value={back} onChange={(e) => setBack(e.target.value)} required />
+              <div>
+                <label htmlFor="flashcard-back">Back:</label>
+                <input type="text" id="flashcard-back" value={back} onChange={(e) => setBack(e.target.value)} required />
+              </div>
             </div>
 
             <button className="flashcard-form-button" type="submit">
-              { editing ? "Update Flashcard" : "Add Flashcard" }
+              {editing ? "Update Flashcard" : "Add Flashcard"}
             </button>
           </form>
 

@@ -34,17 +34,22 @@ export default function CardForm({ addNewDeck }) {
         <div className="card-form-container">
             <form onSubmit={handleSubmit} >
                 {errorMessage && <p className="error">{errorMessage}</p>} {/* Display the error message if it is set */}
-                <h1 className="card-form-title">Create New Deck:</h1>
-                <input
-                    type="text"
-                    placeholder='enter deck name'
-                    id='deckname'
-                    value={deckTitle}
-                    onChange={(e) => setDeckTitle(e.target.value)}
-                    className="card-form-input"
-                />
+                <div className="card-title-div">
+                    <h2 className="card-form-title">Create New Deck:</h2>
+                    <input
+                        type="text"
+                        placeholder='enter deck name...'
+                        id='deckname'
+                        value={deckTitle}
+                        onChange={(e) => setDeckTitle(e.target.value)}
+                        className="card-form-input"
+                    />
+                </div>
 
-                <button className="card-form-submit" type="submit">Create</button>
+                <div className="btn-box">
+                    <button className="card-form-submit" type="submit">Create</button>
+                </div>
+
             </form>
         </div>
     )

@@ -61,32 +61,33 @@ export default function Decks() {
     }
   }
 
-  const deckList = decks ? decks.map(deck => {
+  const deckList = decks ? decks.map((deck, index) => {
     return (
-      <div key={`deck-li ${deck._id}`} className="deck-item">
-        <Link to={`/decks/${deck._id}`} >
+      <Link to={`/decks/${deck._id}`}>
+        <div key={`deck-li ${deck._id}`} className="deck-item">
           <h2 className="deck-title">{deck.title}</h2>
-        </Link>
-        <div className="btn-box">
-          <Link to={`/decks/${deck._id}/studymode`}>
-            <button className="study-mode-button">Study Mode</button>
-          </Link>
-
-          <button className="delete-button" onClick={() => deleteDeck(deck._id)}>Delete</button>
+          <div className="btn-box">
+            <Link to={`/decks/${deck._id}/studymode`}>
+              <button className="study-mode-button">Study</button>
+            </Link>
+            <button className="delete-button" onClick={() => deleteDeck(deck._id)}>Delete</button>
+          </div>
         </div>
-      </div>
+      </Link>
     );
   }) : null;
 
   return (
-    <div className= "deck-container">
+    <div className="deck-container">
       <div className="page-heading">
-      <CardForm
-        addNewDeck={addNewDeck}
-      />
+        <h1>Your Decks</h1>
+        <p>Click the name of a deck to go to its details!</p>
       </div>
       <br />
-      <section className="deck-list ">
+      <section className="deck-list">
+        <div key="deck-form" className="">
+          <CardForm addNewDeck={addNewDeck} />
+        </div>
         {deckList}
       </section>
     </div>
