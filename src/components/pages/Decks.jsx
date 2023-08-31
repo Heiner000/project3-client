@@ -62,19 +62,19 @@ export default function Decks() {
   }
 
   const deckList = decks ? decks.map(deck => {
-
     return (
-      <li key={`deck-li ${deck._id}`} className="deck-item">
+      <div key={`deck-li ${deck._id}`} className="deck-item">
         <Link to={`/decks/${deck._id}`} >
-          <p>{deck.title}</p>
+          <h2 className="deck-title">{deck.title}</h2>
         </Link>
-        
-        <Link to={`/decks/${deck._id}/studymode`}>
-          <button className="study-mode-button">Study Mode</button>
-        </Link>
+        <div className="btn-box">
+          <Link to={`/decks/${deck._id}/studymode`}>
+            <button className="study-mode-button">Study Mode</button>
+          </Link>
 
-        <button className="delete-button" onClick={() => deleteDeck(deck._id)}>Delete</button>
-      </li>
+          <button className="delete-button" onClick={() => deleteDeck(deck._id)}>Delete</button>
+        </div>
+      </div>
     );
   }) : null;
 
@@ -86,9 +86,9 @@ export default function Decks() {
       />
       </div>
       <br />
-      <ul className="deck-list ">
+      <section className="deck-list ">
         {deckList}
-      </ul>
+      </section>
     </div>
   )
 }
